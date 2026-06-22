@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>HoldKey</string>
+    <key>CFBundleDisplayName</key>
+    <string>HoldKey</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.cryz.holdkey</string>
+    <key>CFBundleExecutable</key>
+    <string>HoldKey</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <!-- No Dock icon — runs as background menubar app -->
+    <key>LSUIElement</key>
+    <true/>
+    <key>LSMinimumSystemVersion</key>
+    <string>12.0</string>
+    <!-- Required for CGEventTap — shown in the Accessibility permission dialog -->
+    <key>NSAccessibilityUsageDescription</key>
+    <string>HoldKey needs Accessibility access to lock the mouse to horizontal movement while editing keyframes in Premiere Pro.</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+</dict>
+</plist>

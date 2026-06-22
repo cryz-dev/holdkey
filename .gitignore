@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+*.app/
+*.dSYM/
+*.xcarchive/
+*.log
+
+# Generated icon outputs. The source script can recreate these.
+AppIcon.iconset/
+
+# Local agent/editor metadata
+.claude/
+.vscode/
+.idea/
