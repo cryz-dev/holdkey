@@ -1,5 +1,9 @@
 # HoldKey
 
+<p align="center">
+  <img src="assets/holdkey-logo.jpeg" alt="HoldKey logo" width="360">
+</p>
+
 Bad ease-ease keyframes in Premiere Pro because your mouse moved one pixel down while you only wanted to slide the timing left or right?
 
 Same. HoldKey is for that.
