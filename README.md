@@ -1,62 +1,89 @@
 # HoldKey
 
-HoldKey is a tiny macOS menu bar utility for video editors. Hold a trigger key while dragging a keyframe or easing handle, and your mouse movement stays horizontally aligned.
+Bad ease-ease keyframes in Premiere Pro because your mouse moved one pixel down while you only wanted to slide the timing left or right?
 
-It was built for Adobe Premiere Pro keyframe work, where even a small vertical drift can change a curve while you are only trying to move timing left or right.
+Same. HoldKey is for that.
 
-## Features
+Hold a key, drag a keyframe or easing handle, and your mouse stays locked to a perfectly horizontal line. Scale curves, rotation curves, position curves — no tiny vertical drift ruining the shape.
 
-- Horizontal mouse lock while holding a configurable trigger key
-- Precise modifier-key activation via `flagsChanged`
-- Drag latch: the lock stays active until the mouse button is released, so curves do not fall when you release the trigger key mid-drag
-- Natural X-axis sensitivity
-- Optional “Only in Premiere Pro” mode
-- Start at login
-- Native macOS menu bar app
+## Why
 
-## Requirements
+Premiere Pro keyframe editing is weirdly easy to mess up:
 
-- macOS 12 or newer
-- Accessibility permission for HoldKey
-- Swift toolchain / Xcode command line tools to build from source
+- You grab an ease handle.
+- You try to move it horizontally.
+- Your mouse drifts slightly up or down.
+- The curve changes.
+- You fix it.
+- It happens again.
 
-## Build
+HoldKey removes that little fight.
+
+## What It Does
+
+- Locks mouse movement horizontally while you hold your trigger key
+- Keeps natural X-axis mouse sensitivity
+- Prevents the curve from dropping when you release the key mid-drag
+- Lets you choose your own trigger key
+- Can run only inside Premiere Pro
+- Lives quietly in the macOS menu bar
+- Supports start at login
+
+## Install
+
+Build from source:
 
 ```bash
 ./build.sh
 ```
 
-The build script creates `HoldKey.app` and signs it with a stable local self-signed identity stored in a dedicated keychain. This avoids ad-hoc signing changing the app identity on every rebuild.
-
-Install it manually:
+Install:
 
 ```bash
 cp -R HoldKey.app /Applications/
 open /Applications/HoldKey.app
 ```
 
-Then enable HoldKey in:
+Then allow it in:
 
+```text
 System Settings -> Privacy & Security -> Accessibility
+```
+
+HoldKey needs Accessibility permission because it uses macOS event taps to modify mouse movement before Premiere sees it.
 
 ## Usage
 
-1. Open HoldKey from `/Applications`.
+1. Open HoldKey.
 2. Click the menu bar cursor icon.
-3. Choose your trigger key with `Change Key...`.
-4. In Premiere Pro, hold the trigger key while dragging a keyframe or easing handle.
+3. Choose `Change Key...`.
+4. Press the key you want to hold while locking movement.
+5. In Premiere Pro, hold that key while dragging a keyframe or easing handle.
 
-Menu bar icon colors:
+Icon colors:
 
-- Green: enabled and ready
-- Yellow: horizontal lock active
+- Green: ready
+- Yellow: locking right now
 - Gray: disabled
 - Red: Accessibility permission missing
 
-## Notes
+## Built For
 
-HoldKey works at the macOS event level with `CGEventTap`. It is a standalone utility, not an Adobe plugin.
+- Adobe Premiere Pro keyframes
+- Scale / rotation / position curves
+- Ease handles
+- Editors who do not want to fight tiny accidental vertical mouse movement
+
+HoldKey is not an Adobe plugin. It is a small native macOS menu bar app.
+
+## Requirements
+
+- macOS 12+
+- Swift toolchain / Xcode command line tools
+- Accessibility permission
 
 ## License
 
 MIT
+
+If HoldKey saves you from fixing one more cursed scale curve, starring the repo helps other editors find it.
