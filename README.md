@@ -35,23 +35,28 @@ HoldKey removes that little fight.
 
 ## Install
 
-Build from source:
+Download the latest `.dmg` from the GitHub releases page, then:
+
+1. Open the DMG.
+2. Drag `HoldKey.app` into `Applications`.
+3. Open HoldKey.
+4. If macOS blocks the first launch, right-click `HoldKey.app` and choose `Open`.
+5. Allow it in:
+
+```text
+System Settings -> Privacy & Security -> Accessibility
+```
+
+Build from source instead:
 
 ```bash
 ./build.sh
 ```
 
-Install:
+Create a local DMG:
 
 ```bash
-cp -R HoldKey.app /Applications/
-open /Applications/HoldKey.app
-```
-
-Then allow it in:
-
-```text
-System Settings -> Privacy & Security -> Accessibility
+./package.sh
 ```
 
 HoldKey needs Accessibility permission because it uses macOS event taps to modify mouse movement before Premiere sees it.

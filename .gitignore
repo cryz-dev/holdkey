@@ -4,6 +4,7 @@
 *.dSYM/
 *.xcarchive/
 *.log
+dist/
 
 # Generated icon outputs. The source script can recreate these.
 AppIcon.iconset/
