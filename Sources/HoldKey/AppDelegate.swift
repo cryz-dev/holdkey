@@ -1,5 +1,6 @@
 import AppKit
 import ApplicationServices
+import Darwin
 import ServiceManagement
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -16,6 +17,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     // MARK: - App Launch
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        enforceSingleInstance()
         NSApp.setActivationPolicy(.accessory)
         manager.loadSettings()
 
@@ -35,6 +37,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // If permission is already granted, this starts the tap immediately.
         manager.startTap()
         updateStatusIcon(locked: false)
+    }
+
+    private func enforceSingleInstance() {
+        let currentPID = getpid()
+        let currentBundleID = Bundle.main.bundleIdentifier
+        let duplicates = NSWorkspace.shared.runningApplications.filter { app in
+            app.processIdentifier != currentPID && app.bundleIdentifier == currentBundleID
+        }
+
+        for app in duplicates {
+            app.terminate()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                if !app.isTerminated {
+                    app.forceTerminate()
+                }
+            }
+        }
     }
 
     // MARK: - Status Icon
